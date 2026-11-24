@@ -1,8 +1,9 @@
-resource "aws_instance" "test_server" {
+resource "aws_instance" "dev_server" {
+  count = 2
   ami           = var.ami_id
   instance_type = var.instance_type
   vpc_security_group_ids = var.security_group_ids
-  subnet_id = var.subnet_id[0]
+  subnet_id = var.subnet_id[count.index]
   associate_public_ip_address = var.associate_public_ip_address
   
   root_block_device{
@@ -12,7 +13,7 @@ resource "aws_instance" "test_server" {
 
 
   tags = {
-    Name = "terraform-practice-server"
+    Name = "terraform-practice-server-${count.index + 1}"
   }
 
 }
