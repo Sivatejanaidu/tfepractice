@@ -25,6 +25,6 @@ variable "associate_public_ip_address" {
 }
 
 variable "root_block_device_volume_size" {
-  type        = map(any)
+  type        = number
   description = "Size of the root block device volume in GB"
 }
