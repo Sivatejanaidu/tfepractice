@@ -14,7 +14,6 @@ variable "subnet_id" {
   description = "List of subnet IDs for the EC2 instance"
 }
 
-
 variable "security_group_ids" {
   type        = list(string)
   description = "List of security group IDs for the EC2 instance"
@@ -25,4 +24,7 @@ variable "associate_public_ip_address" {
   description = "whether to associate a public IP address with the instance"
 }
 
-public_ip
+variable "root_block_device_volume_size" {
+  type        = map(any)
+  description = "Size of the root block device volume in GB"
+}
