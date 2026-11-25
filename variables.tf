@@ -10,7 +10,7 @@ variable "instance_type" {
 }
 
 variable "subnet_id" {
-  type        = list(string)
+  type        = string
   description = "List of subnet IDs for the EC2 instance"
 }
 
@@ -27,4 +27,26 @@ variable "associate_public_ip_address" {
 variable "root_block_device_volume_size" {
   type        = number
   description = "Size of the root block device volume in GB"
+}
+/*
+variable "instance_types" {
+  type        = set(string)
+  description = "EC2 instance_type the test server"
+  default     = []
+}
+
+
+variable "environment" {
+  type        = set(string)
+  description = "EC2 instance_type the test server"
+    default     = []
+}
+*/
+
+variable "instances" {
+  type = map(object({
+    instance_type = string
+    environment   = string
+  }))
+  description = "Map of instances with their types and environments"
 }
