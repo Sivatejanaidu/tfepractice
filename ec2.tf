@@ -3,7 +3,7 @@ resource "aws_instance" "dev_server" {
   ami           = var.ami_id
   instance_type = each.value.instance_type
   vpc_security_group_ids = var.security_group_ids
-  subnet_id = var.subnet_id
+  subnet_id = var.instances[each.key].subnet_ids
   associate_public_ip_address = var.associate_public_ip_address
   
   root_block_device{
@@ -13,7 +13,9 @@ resource "aws_instance" "dev_server" {
 
 
   tags = {
-    Name = "terraform-practice-server-{var.environment}"
+    Name = "terraform-practice-server-${each.value.environment}"
   }
 
 }
+
+#

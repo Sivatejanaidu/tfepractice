@@ -1,18 +1,21 @@
 variable "ami_id" {
   type        = string
   description = "EC2 ami idfor the test server"
-  default     = "null"
+  default     = null
 }
 
 variable "instance_type" {
   type        = string
   description = "EC2 instance_type the test server"
+  default     = "null"
 }
-
+/*
 variable "subnet_id" {
   type        = string
   description = "List of subnet IDs for the EC2 instance"
+  default     = null
 }
+*/
 
 variable "security_group_ids" {
   type        = list(string)
@@ -28,25 +31,18 @@ variable "root_block_device_volume_size" {
   type        = number
   description = "Size of the root block device volume in GB"
 }
-/*
-variable "instance_types" {
-  type        = set(string)
-  description = "EC2 instance_type the test server"
-  default     = []
-}
-
-
-variable "environment" {
-  type        = set(string)
-  description = "EC2 instance_type the test server"
-    default     = []
-}
-*/
 
 variable "instances" {
   type = map(object({
     instance_type = string
     environment   = string
+    subnet_ids    = string
   }))
   description = "Map of instances with their types and environments"
+}
+
+variable "additional_tags" {
+  type        = map(string)
+  description = "Additional tags to apply to the resources"
+  default     = {}
 }
